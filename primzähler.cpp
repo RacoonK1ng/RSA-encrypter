@@ -8,20 +8,20 @@ int main() {
     std::cin >> max;
 
     std::vector<bool> ist_prim(max, true);
-    ist_prim[0] = ist_prim[1] = false; // 0,1 sind keine Primzahlen
+    ist_prim[0] = ist_prim[1] = false; // 0,1 arent primes
 
     for (int p = 2; p * p < max; ++p) {
         if (ist_prim[p]) {
             for (int viel = p * p; viel < max; viel += p) {
                 if (ist_prim[viel]) {
-                    std::cout << "Eliminiert " << viel << " (vielfaches von " << p << ")\n";
+                    std::cout << "Eliminated " << viel << " (multiple of " << p << ")\n";
                     ist_prim[viel] = false;
                 }
             }
         }
     }
 
-    std::ofstream file("primzahlen.txt");
+    std::ofstream file("primes.txt");
     for (int i = 2; i < max; ++i) {
         if (ist_prim[i]) {
             file << i << "\n";
